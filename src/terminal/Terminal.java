@@ -20,8 +20,6 @@ public class Terminal {
 
 	private TerminalInterface _terminal;
 
-	private ColorPalette palette;
-
 	public Terminal() {
 		_terminal = new CursesLikeAPI(new SwingTerminal());
 		init();
@@ -58,7 +56,7 @@ public class Terminal {
 	}
 
 	private void setPallete() {
-		palette = new ColorPalette();
+		ColorPalette palette = new ColorPalette();
 		palette.addAll(ColorNames.XTERM_256_COLORS, false);
 		palette.putMapping(ColorNames.SVG_COLORS);
 		_terminal.setPalette(palette);

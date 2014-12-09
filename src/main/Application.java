@@ -6,15 +6,12 @@ import terminal.Terminal;
 import util.maze.Interactive;
 import util.maze.MazeBuilder;
 import util.maze.MazeTraverser;
-import util.saver.SaverGame;
 import util.text.TextMessage;
 import view.View;
 
 import com.googlecode.blacken.helper.ViewerHelper;
 
 import control.player.ControlPlayer;
-
-// TODO: Auto-generated Javadoc
 
 public class Application {
 
@@ -23,7 +20,6 @@ public class Application {
 	}
 
 	public static void main(String[] args) {
-		SaverGame saver = new SaverGame();
 
 		// create models
 		Terminal mazeIO = new Terminal();
@@ -51,13 +47,9 @@ public class Application {
 			view.refresh();
 
 			maze.isTraversable(trav.solveMaze());
-		}
 
-		if (player.hasQuit()) {
-			player.hasQuit(false);
-			saver.save(maze, player);
-		} else
-			saver.clean();
+			trav.printMaze();
+		}
 
 		new ViewerHelper(mazeIO.getTerminal(), "Credits",
 				TextMessage.END_MESSAGE).run();

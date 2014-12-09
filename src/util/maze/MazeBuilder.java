@@ -35,8 +35,8 @@ public class MazeBuilder {
 		_maze.addPassage(pass);
 		roomAdjacent.addDoor(pass.getDoorFirst());
 		roomCurrent.addDoor(pass.getDoorSecond());
-		_interactive.addToMapAll(new I_UserInteract[] { roomAdjacent,
-				roomCurrent, pass, pass.getDoorFirst(), pass.getDoorSecond() });
+		_interactive.addToMapAll(new I_UserInteract[] { pass.getDoorSecond(),
+				pass.getDoorFirst(), pass, roomAdjacent, roomCurrent });
 	}
 
 	private void addDoorsUD(RegionRoom roomAdjacent, RegionRoom roomCurrent) {

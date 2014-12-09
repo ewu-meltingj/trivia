@@ -2,28 +2,21 @@ package model.door;
 
 import model.player.Player;
 import model.point.Point;
-import model.question.QuestionTF;
-import contracts.I_HaveDoorStates;
+//import model.question.QuestionTF;
+import contracts.I_HaveDoorState;
 
 // TODO: Auto-generated Javadoc
 
 // TODO add interaction
-public class DoorStateQuestion implements I_HaveDoorStates {
+public class DoorStateQuestion implements I_HaveDoorState {
 
-	QuestionTF _questionTF;
+//	private QuestionTF _questionTF;
+	private Door _door;
+	
 
 	public DoorStateQuestion() {
-		_questionTF = new QuestionTF();
+//		_questionTF = new QuestionTF();
 	}
-
-	// @Override
-	// public void accept(ObserveDoor viewObserveDoor) {
-	// viewObserveDoor.handleState(this);
-	// }
-
-	// public QuestionTF getQuestion() {
-	// return _questionTF;
-	// }
 
 	@Override
 	public int getSymbol() {
@@ -35,13 +28,14 @@ public class DoorStateQuestion implements I_HaveDoorStates {
 		return 1;
 	}
 
-	// @Override
-	// public boolean interact(Door door) {
-	// door.getPassage().isStateChanged(true);
-	// return false;
-	// }
+	@Override
+	public void interact(Player player, Point direction) {
+		player.move(Point.refuse(direction));
+		_door.setDoorState(new DoorStateCleared());
+	}
 
 	@Override
-	public void interactedWell(Player player, Point direction) {
+	public void setdoor(Door door) {
+		_door = door;
 	}
 }

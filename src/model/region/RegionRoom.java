@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import util.maze.Interactive;
+
 import model.door.Door;
 import model.player.Player;
 import model.point.Point;
@@ -40,7 +42,7 @@ public class RegionRoom extends A_Region implements Serializable,
 
 	@Override
 	public void interact(Player player, Point direction) {
-		if (this.contains(player.possible(direction)))
+		System.out.println("this is a room");
 			player.move(direction);
 	}
 
@@ -53,5 +55,16 @@ public class RegionRoom extends A_Region implements Serializable,
 	@Override
 	public String toString() {
 		return "ID:" + _id + " Height:" + _height + " Width:" + _width;
+	}
+
+	@Override
+	public void setBounds(Interactive active) {
+		int startY = _origin.getY() + 1;
+		int startX = _origin.getX() + 1;
+		int endY = startY + _height - 2;
+		int endX = startX + _width - 2;
+		for(int y = startY; y < endY; y++)
+			for(int x = startX; x < endX; x++)
+				active.put(new Point(y, x), this);
 	}
 }

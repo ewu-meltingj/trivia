@@ -1,5 +1,6 @@
 package model.passage;
 
+import util.maze.Interactive;
 import model.door.Door;
 import model.door.DoorStateBlocked;
 import model.door.DoorStateCleared;
@@ -23,26 +24,20 @@ public abstract class A_Passage implements I_UserInteract {
 
 	public A_Passage(RegionRoom firstRoom, RegionRoom secondRoom) {
 		_firstDoor = new Door(new DoorStateQuestion());
-		// _firstDoor.setRoom(firstRoom);
 		_firstDoor.setPassage(this);
 
 		_secondDoor = new Door(new DoorStateQuestion());
-		// _secondDoor.setRoom(secondRoom);
 		_secondDoor.setPassage(this);
 	}
 
 	public void blockDoors() {
 		_firstDoor.setDoorState(new DoorStateBlocked());
-		_firstDoor.isStateChanged(true);
 		_secondDoor.setDoorState(new DoorStateBlocked());
-		_secondDoor.isStateChanged(true);
 	}
 
 	public void clearDoors() {
 		_firstDoor.setDoorState(new DoorStateCleared());
-		_firstDoor.isStateChanged(true);
 		_secondDoor.setDoorState(new DoorStateCleared());
-		_secondDoor.isStateChanged(true);
 	}
 
 	@Override
@@ -76,7 +71,7 @@ public abstract class A_Passage implements I_UserInteract {
 
 	@Override
 	public int getHeight() {
-		return _passageEnd.getX() - _passageOrigin.getX();
+		return _passageEnd.getY() - _passageOrigin.getY();
 	}
 
 	@Override
@@ -86,12 +81,26 @@ public abstract class A_Passage implements I_UserInteract {
 
 	@Override
 	public int getWidth() {
-		return _passageEnd.getY() - _passageOrigin.getY();
+		return _passageEnd.getX() - _passageOrigin.getX();
 	}
 
 	@Override
 	public void interact(Player player, Point direction) {
+		player.move(direction);
+	}
 
+	@Override
+	public void setBounds(Interactive active) {
+		Point origin = _passageOrigin;
+		Point end = _passageEnd;
+		int lenthHorizontal = end.getX() - origin.getX() ;
+		int lenthVertical = end.getY() - origin.getY();
+
+		for (int y = 0 ; y < lenthVertical; y++)
+			active.put(new Point(y + origin.getY() , origin.getX()), this);
+
+		for (int x = 1; x < lenthHorizontal; x++)
+		active.put(new Point(origin.getY() , origin.getX() + x), this);
 	}
 
 	public abstract void isStateChanged(boolean state);

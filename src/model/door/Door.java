@@ -1,44 +1,39 @@
 package model.door;
 
+import util.maze.Interactive;
 import model.passage.A_Passage;
 import model.player.Player;
 import model.point.Point;
 import contracts.I_GetObserved;
-import contracts.I_HaveDoorStates;
+import contracts.I_HaveDoorState;
 import contracts.I_UserInteract;
-
-// TODO: Auto-generated Javadoc
 
 public class Door implements I_GetObserved, I_UserInteract {
 
-	private I_HaveDoorStates _doorState;
+	private I_HaveDoorState _doorState;
 
 	private A_Passage _passage;
 
 	private Point _origin;
 
-	// private transient RegionRoom _room;
-
 	private boolean _isStateChanged;
 
-	public Door(I_HaveDoorStates doorState) {
+	public Door(I_HaveDoorState doorState) {
 		if (doorState == null)
 			throw new RuntimeException("Stuff passed in Doors is null");
 		_doorState = doorState;
+		_doorState.setdoor(this);
 		_isStateChanged = false;
 	}
 
 	public void blockDoor() {
+		// _isStateChanged = true;
 		_passage.blockDoors();
 	}
 
 	public void clearDoor() {
+		// _isStateChanged = true;
 		_passage.clearDoors();
-	}
-
-	@Override
-	public boolean contains(Point point) {
-		return _origin.equals(point);
 	}
 
 	@Override
@@ -54,42 +49,17 @@ public class Door implements I_GetObserved, I_UserInteract {
 		return true;
 	}
 
-	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
-	//
-	//
-	// public RegionRoom getRoom() {
-	// return _room;
-	// }
-
-	@Override
 	public Point getOrigin() {
 		return _origin;
 	}
 
-	//
-	//
-	// public I_HaveStates getState() {
-	// return _doorState;
-	// }
-
 	public A_Passage getPassage() {
 		return _passage;
 	}
-
-	public Door getSibling() {
-		return _passage.getDoorSibling(this);
-	}
-
-	//
-	//
-	// public boolean interact() {
-	// return _doorState.interact(this);
-	// }
 
 	public int getSymbol() {
 		return _doorState.getSymbol();
@@ -101,13 +71,13 @@ public class Door implements I_GetObserved, I_UserInteract {
 
 	@Override
 	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override
 	public void interact(Player player, Point direction) {
-		_doorState.interactedWell(player, direction);
+		System.out.println("this is a door");
+		_doorState.interact(player, direction);
 	}
 
 	@Override
@@ -115,19 +85,16 @@ public class Door implements I_GetObserved, I_UserInteract {
 		return _isStateChanged;
 	}
 
-	// public void setRoom(RegionRoom room) {
-	// _room = room;
-	// }
-
 	@Override
 	public void isStateChanged(boolean isChanged) {
 		_isStateChanged = isChanged;
 	}
 
-	public void setDoorState(I_HaveDoorStates door) {
+	public void setDoorState(I_HaveDoorState door) {
 		if (door == null)
 			throw new RuntimeException("Negative");
 		_doorState = door;
+		_isStateChanged = true;
 	}
 
 	public void setOrigin(Point origin) {
@@ -136,5 +103,10 @@ public class Door implements I_GetObserved, I_UserInteract {
 
 	public void setPassage(A_Passage passage) {
 		_passage = passage;
+	}
+	
+	@Override
+	public void setBounds(Interactive active) {
+		active.put(_origin, this);
 	}
 }

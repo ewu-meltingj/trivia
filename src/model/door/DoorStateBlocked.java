@@ -2,19 +2,15 @@ package model.door;
 
 import model.player.Player;
 import model.point.Point;
-import contracts.I_HaveDoorStates;
+import contracts.I_HaveDoorState;
 
-// TODO: Auto-generated Javadoc
 
-public class DoorStateBlocked implements I_HaveDoorStates {
+public class DoorStateBlocked implements I_HaveDoorState {
+	
+//	private Door _door;
 
 	public DoorStateBlocked() {
 	}
-
-	// @Override
-	// public void accept(ObserveDoor viewObserveDoor) {
-	// viewObserveDoor.handleState(this);
-	// }
 
 	@Override
 	public int getSymbol() {
@@ -26,12 +22,13 @@ public class DoorStateBlocked implements I_HaveDoorStates {
 		return 2;
 	}
 
-	// @Override
-	// public boolean interact(Door door) {
-	// return false;
-	// }
+	@Override
+	public void interact(Player player, Point direction) {
+		player.move(Point.refuse(direction));
+	}
 
 	@Override
-	public void interactedWell(Player player, Point direction) {
+	public void setdoor(Door door) {
+//		_door = door;
 	}
 }

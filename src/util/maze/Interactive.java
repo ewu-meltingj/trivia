@@ -19,14 +19,13 @@ public class Interactive {
 	}
 
 	public void addToMap(I_UserInteract active) {
-		int originY = active.getOrigin().getY();
-		int originX = active.getOrigin().getX();
-		int endY = active.getHeight() + originY;
-		int endX = active.getWidth() + originX;
-		for (int y = originY; y <= endY; y++)
-			for (int x = originX; x <= endX; x++)
-				_interactiveGrid.put(new Point(y, x), active);
+		active.setBounds(this);
 	}
+	
+	public void put(Point point, I_UserInteract active) {
+		_interactiveGrid.put(point, active);
+	}
+
 
 	public void addToMapAll(I_UserInteract[] active) {
 		for (int i = 0; i < active.length; i++)
@@ -41,11 +40,6 @@ public class Interactive {
 		Point possibleMove = Point.translate(player.getPosition(), direction);
 		_interactiveGrid.get(possibleMove).interact(player, direction);
 	}
-
-	// public I_Interactive getInteractiveItem(Player player, Point direction) {
-	// Point possibleMove = Point.translate(player.getPosition(), direction);
-	// return _interactiveGrid.get(possibleMove);
-	// }
 
 	public boolean isInteractive(Player player, Point direction) {
 		Point possibleMove = Point.translate(player.getPosition(), direction);

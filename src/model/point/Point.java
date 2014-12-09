@@ -12,6 +12,10 @@ public class Point implements Serializable {
 		return new Point(pointOne.getY() + pointTwo.getY(), pointOne.getX()
 				+ pointTwo.getX());
 	}
+	
+	public static Point refuse(Point pointOne) {
+		return new Point(pointOne.getY() * -1, pointOne.getX() * -1);
+	}
 
 	private int _xCoordinate;
 
