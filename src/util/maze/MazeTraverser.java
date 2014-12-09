@@ -55,7 +55,7 @@ public class MazeTraverser {
 		_mazeToCheck = new int[_mazeHeight][_mazeWidth];
 		_wasHere = new boolean[_mazeHeight][_mazeWidth];
 		_player = player;
-		_start = _player.getPlayerPosition();
+		_start = _player.getPosition();
 		_end = maze.getRoomEnd().center();
 		drawMaze();
 		drawPassages();

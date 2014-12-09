@@ -11,6 +11,7 @@
  */
 package contracts;
 
+import model.player.Player;
 import model.point.Point;
 
 /**
@@ -22,4 +23,5 @@ public interface I_Interactive {
 	public int getHeight();
 	public boolean contains(Point point);
 	public Point getOrigin();
+	public void interact(Player player, Point direction);
 }

@@ -7,6 +7,7 @@ import model.door.Door;
 import model.door.DoorStateBlocked;
 import model.door.DoorStateCleared;
 import model.door.DoorStateQuestion;
+import model.player.Player;
 import model.point.Point;
 import model.region.RegionRoom;
 import contracts.I_Interactive;
@@ -117,6 +118,10 @@ public abstract class A_Passage implements I_Interactive {
 	 */
 	public Point getEnd() {
 		return _passageEnd;
+	}
+	
+	public void interact(Player player, Point direction){
+		
 	}
 
 	/**

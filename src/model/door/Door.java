@@ -4,6 +4,7 @@
 package model.door;
 
 import model.passage.A_Passage;
+import model.player.Player;
 import model.point.Point;
 import model.region.RegionRoom;
 import contracts.I_ChangeState;
@@ -235,5 +236,14 @@ public class Door implements I_ChangeState, I_Interactive {
 	@Override
 	public boolean contains(Point point) {
 		return _origin.equals(point);
+	}
+
+	/* (non-Javadoc)
+	 * @see contracts.I_Interactive#interact(model.player.Player, model.point.Point)
+	 */
+	@Override
+	public void interact(Player player, Point direction) {
+		// TODO Auto-generated method stub
+		
 	}
 }

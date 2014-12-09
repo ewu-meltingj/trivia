@@ -176,7 +176,7 @@ public class Drawer {
 	 */
 	public void drawPlayer(Player player) {
 		BlackenPoint playerPointCurr = new BlackenPoint(player
-				.getPlayerPosition().getY(), player.getPlayerPosition().getX());
+				.getPosition().getY(), player.getPosition().getX());
 		BlackenPoint playerPointPrev = new BlackenPoint(player
 				.getPlayerPositionPrev().getY(), player.getPlayerPositionPrev()
 				.getX());
@@ -184,7 +184,7 @@ public class Drawer {
 		_bGrid.set(playerPointPrev, _oldBlock);
 		_oldBlock = _bGrid.get(playerPointCurr);
 		_bGrid.set(playerPointCurr, player.getPlayerSymbol());
-		player.setPlayerPositionPrev(player.getPlayerPosition());
+		player.setPlayerPositionPrev(player.getPosition());
 	}
 
 	/**

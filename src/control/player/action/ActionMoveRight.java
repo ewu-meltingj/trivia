@@ -3,11 +3,9 @@
  */
 package control.player.action;
 
-import java.util.Map;
-
-import contracts.I_Interactive;
 import model.player.Player;
 import model.point.Point;
+import util.maze.Interactive;
 import util.text.TextSlug;
 
 // TODO: Auto-generated Javadoc
@@ -16,7 +14,7 @@ import util.text.TextSlug;
  * 
  * @author jeremy
  */
-public class ActionMoveRight extends A_ActionMove implements I_ActionHandler {
+public class ActionMoveRight implements I_ActionHandler {
 
 	/** The Constant MOVE_RIGHT. */
 	private static final Point MOVE_RIGHT = new Point(0, +1);
@@ -28,8 +26,9 @@ public class ActionMoveRight extends A_ActionMove implements I_ActionHandler {
 	 * control.player.action.I_ActionHandler#handleAction(model.player.Player)
 	 */
 	@Override
-	public void handleAction(Player player, Map<Point, I_Interactive> _active) {
+	public void handleAction(Player player, Interactive _activeElements) {
 		player.setPlayerSymbol(TextSlug.LOOKING_RIGHT);
-		handleMove(MOVE_RIGHT, player, _active);
+		if(_activeElements.isInteractive(player, MOVE_RIGHT))
+			System.out.println("boom");
 	};
 }

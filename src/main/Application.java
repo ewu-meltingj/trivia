@@ -9,6 +9,7 @@ import model.player.Player;
 import model.point.Point;
 import model.region.RegionMaze;
 import terminal.Terminal;
+import util.maze.Interactive;
 import util.maze.MazeBuilder;
 import util.maze.MazeTraverser;
 import util.saver.SaverGame;
@@ -38,7 +39,7 @@ public class Application {
 	 * @return true, if successful
 	 */
 	public static boolean hasCompletedMaze(Player player, RegionMaze maze) {
-		return maze.getRoomEnd().contains(player.getPlayerPosition());
+		return maze.getRoomEnd().contains(player.getPosition());
 	}
 
 	/**
@@ -55,14 +56,16 @@ public class Application {
 
 		RegionMaze maze = new RegionMaze(3);
 		MazeBuilder mBuilder = new MazeBuilder();
-		Map<Point, I_Interactive> active = mBuilder.create(maze);
+		
+		
+		Interactive activeElements = new Interactive(mBuilder.create(maze));
 		
 		Player player = new Player(maze.getRoomStart());
 
 		MazeTraverser trav = new MazeTraverser(maze, player);
 
 		// create control
-		ControlPlayer userInterface = new ControlPlayer(mazeIO, player, active);
+		ControlPlayer playerControl = new ControlPlayer(mazeIO, player, activeElements);
 
 		// create view
 		new ViewerHelper(mazeIO.getTerminal(), "Lazer Slug Trivia Maze",
@@ -70,7 +73,7 @@ public class Application {
 		View view = new View(maze, player, mazeIO.getTerminal());
 		while (!hasCompletedMaze(player, maze) && !player.hasQuit()
 				&& maze.isTraversable()) {
-			userInterface.checkCommand();
+			playerControl.checkCommand();
 			view.refresh();
 
 			maze.isTraversable(trav.solveMaze());

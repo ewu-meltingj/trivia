@@ -12,6 +12,7 @@ import java.util.List;
 import contracts.I_Interactive;
 
 import model.door.Door;
+import model.player.Player;
 import model.point.Point;
 
 // TODO: Auto-generated Javadoc
@@ -100,5 +101,14 @@ public class RegionRoom extends A_Region implements Serializable, I_Interactive 
 	@Override
 	public String toString() {
 		return "ID:" + _id + " Height:" + _height + " Width:" + _width;
+	}
+
+	/* (non-Javadoc)
+	 * @see contracts.I_Interactive#interact(model.player.Player, model.point.Point)
+	 */
+	@Override
+	public void interact(Player player, Point direction) {
+		// TODO Auto-generated method stub
+		
 	}
 }

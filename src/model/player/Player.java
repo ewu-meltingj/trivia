@@ -65,21 +65,11 @@ public class Player implements I_ChangeState, Serializable {
 	}
 
 	/**
-	 * Answer question.
-	 * 
-	 * @param question
-	 *            the question
-	 */
-	public void answerQuestion(String question) {
-		System.out.println(question);
-	}
-
-	/**
 	 * Gets the player position.
 	 * 
 	 * @return the player position
 	 */
-	public Point getPlayerPosition() {
+	public Point getPosition() {
 		return new Point(_yCoordinate, _xCoordinate);
 	}
 
@@ -99,15 +89,6 @@ public class Player implements I_ChangeState, Serializable {
 	 */
 	public int getPlayerSymbol() {
 		return _symbolPlayer;
-	}
-
-	/**
-	 * Gets the room current.
-	 * 
-	 * @return the room current
-	 */
-	public RegionRoom getRoomCurrent() {
-		return _currentRoom;
 	}
 
 	/**
@@ -183,7 +164,7 @@ public class Player implements I_ChangeState, Serializable {
 	 *            the direction
 	 */
 	public void move(Point direction) {
-		_oldPosition = getPlayerPosition();
+		_oldPosition = getPosition();
 		this.setPlayerPosition(_yCoordinate + direction.getY(), _xCoordinate
 				+ direction.getX());
 		_isStateChanged = true;
