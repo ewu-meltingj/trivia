@@ -3,8 +3,11 @@
  */
 package util.maze;
 
-//import model.Door;
-//import model.DoorStateQuestion;
+import java.util.HashMap;
+import java.util.Map;
+
+import contracts.I_Interactive;
+
 import model.passage.A_Passage;
 import model.passage.PassageHorizontal;
 import model.passage.PassageVertical;
@@ -17,6 +20,8 @@ import model.region.RegionRoom;
  * The Class MazeBuilder.
  */
 public class MazeBuilder {
+
+	private Map<Point, I_Interactive> interactiveMap;
 
 	/** The _maze. */
 	private RegionMaze _maze;
@@ -40,6 +45,7 @@ public class MazeBuilder {
 	 * Instantiates a new maze builder.
 	 */
 	public MazeBuilder() {
+		interactiveMap = new HashMap<Point, I_Interactive>();
 	}
 
 	/**
@@ -56,6 +62,8 @@ public class MazeBuilder {
 		_maze.addPassage(pass);
 		roomAdjacent.addDoor(pass.getDoorFirst());
 		roomCurrent.addDoor(pass.getDoorSecond());
+		addToMapAll(new I_Interactive[] { roomAdjacent, roomCurrent, pass,
+				pass.getDoorFirst(), pass.getDoorSecond() });
 	}
 
 	/**
@@ -71,6 +79,8 @@ public class MazeBuilder {
 		_maze.addPassage(pass);
 		roomAdjacent.addDoor(pass.getDoorFirst());
 		roomCurrent.addDoor(pass.getDoorSecond());
+		addToMapAll(new I_Interactive[] { roomAdjacent, roomCurrent, pass,
+				pass.getDoorFirst(), pass.getDoorSecond() });
 	}
 
 	/**
@@ -102,6 +112,21 @@ public class MazeBuilder {
 				addDoorsUD(roomUp, roomCurrent);
 			}
 		}
+	}
+
+	private void addToMap(I_Interactive active) {
+		int originY = active.getOrigin().getY();
+		int originX = active.getOrigin().getX();
+		int endY = active.getHeight() + originY;
+		int endX = active.getWidth() + originX;
+		for (int y = originY; y < endY; y++)
+			for (int x = originX; x < endX; x++)
+				interactiveMap.put(new Point(y, x), active);
+	}
+
+	private void addToMapAll(I_Interactive[] active) {
+		for (int i = 0; i < active.length; i++)
+			addToMap(active[i]);
 	}
 
 	/**
