@@ -7,6 +7,7 @@ import model.passage.A_Passage;
 import model.point.Point;
 import model.region.RegionRoom;
 import contracts.I_ChangeState;
+import contracts.I_Interactive;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -14,7 +15,7 @@ import contracts.I_ChangeState;
  * 
  * @author jeremy
  */
-public class Door implements I_ChangeState {
+public class Door implements I_ChangeState, I_Interactive {
 
 	/** The _door state. */
 	private I_DoorState _doorState;

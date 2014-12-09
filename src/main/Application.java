@@ -6,6 +6,7 @@ package main;
 import model.player.Player;
 import model.region.RegionMaze;
 import terminal.Terminal;
+import util.maze.MazeBuilder;
 import util.maze.MazeTraverser;
 import util.saver.SaverGame;
 import util.text.TextMessage;
@@ -48,11 +49,13 @@ public class Application {
 		// create models
 		Terminal mazeIO = new Terminal();
 
-		RegionMaze maze = saver.loadMaze();
-		Player player = saver.loadPlayer(maze);
+		RegionMaze maze = new RegionMaze(3);
+		MazeBuilder mBuilder = new MazeBuilder();
+		mBuilder.create(maze);
+		
+		Player player = new Player(maze.getRoomStart());
 
 		MazeTraverser trav = new MazeTraverser(maze, player);
-		;
 
 		// create control
 		ControlPlayer userInterface = new ControlPlayer(mazeIO, player);

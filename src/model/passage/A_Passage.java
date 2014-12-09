@@ -3,6 +3,7 @@
  */
 package model.passage;
 
+import contracts.I_Interactive;
 import model.door.Door;
 import model.door.DoorStateBlocked;
 import model.door.DoorStateCleared;
@@ -16,7 +17,7 @@ import model.region.RegionRoom;
  * 
  * @author jeremy
  */
-public abstract class A_Passage {
+public abstract class A_Passage implements I_Interactive {
 
 	/** The _first door. */
 	protected Door _firstDoor;

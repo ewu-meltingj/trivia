@@ -66,6 +66,15 @@ public class Point implements Serializable {
 		return true;
 	}
 
+	@Override
+	public int hashCode() {
+		int result = 0;
+		result = 31 * result + _yCoordinate;
+		result = 31 * result + _xCoordinate;
+
+		return result;
+	}
+
 	/**
 	 * Gets the x.
 	 * 

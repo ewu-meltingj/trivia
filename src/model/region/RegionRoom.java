@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import contracts.I_Interactive;
+
 import model.door.Door;
 import model.point.Point;
 
@@ -19,7 +21,7 @@ import model.point.Point;
 
 // TODO using null values is a bad practice. Fix actions so that they are not
 // needed.
-public class RegionRoom extends A_Region implements Serializable {
+public class RegionRoom extends A_Region implements Serializable, I_Interactive {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -6898900693260805420L;
