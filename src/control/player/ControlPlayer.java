@@ -12,8 +12,12 @@
  */
 package control.player;
 
+import java.util.Map;
+
 import model.player.Player;
+import model.point.Point;
 import terminal.Terminal;
+import contracts.I_Interactive;
 import control.player.action.I_ActionHandler;
 
 // TODO: Auto-generated Javadoc
@@ -27,6 +31,8 @@ public class ControlPlayer {
 
 	/** The _player. */
 	private Player _player;
+	
+	Map<Point, I_Interactive> _active;
 
 	/**
 	 * Instantiates a new player controller.
@@ -36,9 +42,10 @@ public class ControlPlayer {
 	 * @param player
 	 *            the player
 	 */
-	public ControlPlayer(Terminal terminal, Player player) {
+	public ControlPlayer(Terminal terminal, Player player, Map<Point, I_Interactive> active) {
 		_terminal = terminal;
 		_player = player;
+		_active = active;
 	}
 
 	/**
@@ -55,7 +62,7 @@ public class ControlPlayer {
 	 *            the action handler
 	 */
 	public void doAction(I_ActionHandler actionHandler) {
-		actionHandler.handleAction(_player);
+		actionHandler.handleAction(_player, _active);
 	}
 
 }

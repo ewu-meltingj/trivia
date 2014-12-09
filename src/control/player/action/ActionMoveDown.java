@@ -3,6 +3,9 @@
  */
 package control.player.action;
 
+import java.util.Map;
+
+import contracts.I_Interactive;
 import model.player.Player;
 import model.point.Point;
 import util.text.TextSlug;
@@ -25,8 +28,8 @@ public class ActionMoveDown extends A_ActionMove implements I_ActionHandler {
 	 * control.player.action.I_ActionHandler#handleAction(model.player.Player)
 	 */
 	@Override
-	public void handleAction(Player player) {
+	public void handleAction(Player player, Map<Point, I_Interactive> _active) {
 		player.setPlayerSymbol(TextSlug.LOOKING_DOWN);
-		handleMove(MOVE_DOWN, player);
+		handleMove(MOVE_DOWN, player, _active);
 	}
 }

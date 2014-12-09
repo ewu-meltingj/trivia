@@ -3,7 +3,10 @@
  */
 package main;
 
+import java.util.Map;
+
 import model.player.Player;
+import model.point.Point;
 import model.region.RegionMaze;
 import terminal.Terminal;
 import util.maze.MazeBuilder;
@@ -14,6 +17,7 @@ import view.View;
 
 import com.googlecode.blacken.helper.ViewerHelper;
 
+import contracts.I_Interactive;
 import control.player.ControlPlayer;
 
 // TODO: Auto-generated Javadoc
@@ -51,14 +55,14 @@ public class Application {
 
 		RegionMaze maze = new RegionMaze(3);
 		MazeBuilder mBuilder = new MazeBuilder();
-		mBuilder.create(maze);
+		Map<Point, I_Interactive> active = mBuilder.create(maze);
 		
 		Player player = new Player(maze.getRoomStart());
 
 		MazeTraverser trav = new MazeTraverser(maze, player);
 
 		// create control
-		ControlPlayer userInterface = new ControlPlayer(mazeIO, player);
+		ControlPlayer userInterface = new ControlPlayer(mazeIO, player, active);
 
 		// create view
 		new ViewerHelper(mazeIO.getTerminal(), "Lazer Slug Trivia Maze",

@@ -20,5 +20,6 @@ import model.point.Point;
 public interface I_Interactive {
 	public int getWidth();
 	public int getHeight();
+	public boolean contains(Point point);
 	public Point getOrigin();
 }

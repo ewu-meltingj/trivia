@@ -3,6 +3,9 @@
  */
 package control.player.action;
 
+import java.util.Map;
+
+import contracts.I_Interactive;
 import model.door.Door;
 import model.passage.A_Passage;
 import model.player.Player;
@@ -25,10 +28,13 @@ public abstract class A_ActionMove {
 	 * @param player
 	 *            the player
 	 */
-	protected void handleMove(Point direction, Player player) {
+	protected void handleMove(Point direction, Player player, Map<Point, I_Interactive> _active) {
 		Point possibleMove = Point.translate(player.getPlayerPosition(),
 				direction);
 		RegionRoom currentRoom = player.getRoomCurrent();
+		
+		if(_active.containsKey(possibleMove))
+			System.out.println("boom");
 
 		if (isAPassableDoor(possibleMove, player, currentRoom))
 			player.move(direction);
@@ -82,7 +88,6 @@ public abstract class A_ActionMove {
 			}
 
 		}
-		System.out.println("fail");
 		return false;
 	}
 

@@ -228,4 +228,12 @@ public class Door implements I_ChangeState, I_Interactive {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	/* (non-Javadoc)
+	 * @see contracts.I_Interactive#contains(model.point.Point)
+	 */
+	@Override
+	public boolean contains(Point point) {
+		return _origin.equals(point);
+	}
 }
