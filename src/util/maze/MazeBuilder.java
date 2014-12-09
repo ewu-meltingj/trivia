@@ -1,9 +1,4 @@
-/*
- * 
- */
 package util.maze;
-
-import contracts.I_Interactive;
 
 import model.passage.A_Passage;
 import model.passage.PassageHorizontal;
@@ -11,81 +6,48 @@ import model.passage.PassageVertical;
 import model.point.Point;
 import model.region.RegionMaze;
 import model.region.RegionRoom;
+import contracts.I_UserInteract;
 
 // TODO: Auto-generated Javadoc
-/**
- * The Class MazeBuilder.
- */
+
 public class MazeBuilder {
 
-	/** The _maze. */
 	private RegionMaze _maze;
 
-	/** The _total rooms. */
 	private int _totalRooms;
 
-	/** The _total side rooms. */
 	private int _totalSideRooms;
 
-	/** The Constant ROOM_WIDTH. */
 	private static final int ROOM_WIDTH = 11;
 
-	/** The Constant ROOM_HEIGHT. */
 	private static final int ROOM_HEIGHT = 5;
 
-	/** The Constant ROOM_PADDING. */
 	private static final int ROOM_PADDING = 5;
 
 	Interactive _interactive;
-	
-	/**
-	 * Instantiates a new maze builder.
-	 */
+
 	public MazeBuilder() {
 		_interactive = new Interactive();
 	}
 
-	/**
-	 * Adds the Left and Right Doors to their associated rooms and to their
-	 * shared pasage.
-	 * 
-	 * @param roomAdjacent
-	 *            the left room
-	 * @param roomCurrent
-	 *            the right room
-	 */
 	private void addDoorsLR(RegionRoom roomAdjacent, RegionRoom roomCurrent) {
 		A_Passage pass = new PassageHorizontal(roomAdjacent, roomCurrent);
 		_maze.addPassage(pass);
 		roomAdjacent.addDoor(pass.getDoorFirst());
 		roomCurrent.addDoor(pass.getDoorSecond());
-		_interactive.addToMapAll(new I_Interactive[] { pass, pass.getDoorFirst(),
-				pass.getDoorSecond() });
+		_interactive.addToMapAll(new I_UserInteract[] { roomAdjacent,
+				roomCurrent, pass, pass.getDoorFirst(), pass.getDoorSecond() });
 	}
 
-	/**
-	 * Adds the doors ud.
-	 * 
-	 * @param roomAdjacent
-	 *            the room adjacent
-	 * @param roomCurrent
-	 *            the room current
-	 */
 	private void addDoorsUD(RegionRoom roomAdjacent, RegionRoom roomCurrent) {
 		A_Passage pass = new PassageVertical(roomAdjacent, roomCurrent);
 		_maze.addPassage(pass);
 		roomAdjacent.addDoor(pass.getDoorFirst());
 		roomCurrent.addDoor(pass.getDoorSecond());
-		_interactive.addToMapAll(new I_Interactive[] { pass, pass.getDoorFirst(),
-				pass.getDoorSecond() });
+		_interactive.addToMapAll(new I_UserInteract[] { roomAdjacent,
+				roomCurrent, pass, pass.getDoorFirst(), pass.getDoorSecond() });
 	}
 
-	/**
-	 * Creates the.
-	 * 
-	 * @param maze
-	 *            the maze
-	 */
 	public Interactive create(RegionMaze maze) {
 		_maze = maze;
 		_totalRooms = maze.getRoomTotal();
@@ -112,13 +74,6 @@ public class MazeBuilder {
 		return _interactive;
 	}
 
-	/**
-	 * Creates the room origin.
-	 * 
-	 * @param roomID
-	 *            the room id
-	 * @return the point
-	 */
 	public Point createRoomOrigin(int roomID) {
 		int offsetX = ROOM_WIDTH + ROOM_PADDING;// 20
 		int offsetY = ROOM_HEIGHT + ROOM_PADDING;// 8
@@ -128,46 +83,24 @@ public class MazeBuilder {
 				+ ROOM_PADDING);
 	}
 
-	/**
-	 * Grid height.
-	 * 
-	 * @return the int
-	 */
 	public int gridHeight() {
 		return (ROOM_HEIGHT + ROOM_PADDING) * _totalSideRooms + ROOM_PADDING;
 	}
 
-	/**
-	 * Grid width.
-	 * 
-	 * @return the int
-	 */
 	public int gridWidth() {
 		return (ROOM_WIDTH + ROOM_PADDING) * _totalSideRooms + ROOM_PADDING;
 	}
 
 	// check if the current room has a neighbor to its left.
-	/**
-	 * Checks for room adjacent left.
-	 * 
-	 * @param roomId
-	 *            the room id
-	 * @return true, if successful
-	 */
+
 	private boolean hasRoomAdjacentLeft(int roomId) {
 		return _maze.hasRoom(roomId - 1) && roomId % _totalSideRooms != 0;
 	}
 
 	// check if the current room has a neighbor above itself.
-	/**
-	 * Checks for room adjacent up.
-	 * 
-	 * @param roomId
-	 *            the room id
-	 * @return true, if successful
-	 */
+
 	private boolean hasRoomAdjacentUp(int roomId) {
 		return _maze.hasRoom(roomId - _totalSideRooms);
 	}
-	
+
 }

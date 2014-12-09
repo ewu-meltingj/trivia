@@ -1,70 +1,46 @@
-/*
- * 
- */
 package model.door;
 
 import model.passage.A_Passage;
 import model.player.Player;
 import model.point.Point;
-import model.region.RegionRoom;
-import contracts.I_ChangeState;
-import contracts.I_Interactive;
+import contracts.I_GetObserved;
+import contracts.I_HaveDoorStates;
+import contracts.I_UserInteract;
 
 // TODO: Auto-generated Javadoc
-/**
- * The Class Door.
- * 
- * @author jeremy
- */
-public class Door implements I_ChangeState, I_Interactive {
 
-	/** The _door state. */
-	private I_DoorState _doorState;
+public class Door implements I_GetObserved, I_UserInteract {
 
-	/** The _passage. */
+	private I_HaveDoorStates _doorState;
+
 	private A_Passage _passage;
 
-	/** The _origin. */
 	private Point _origin;
 
-	/** The _room. */
-	private transient RegionRoom _room;
+	// private transient RegionRoom _room;
 
-	/** The _is state changed. */
 	private boolean _isStateChanged;
 
-	/**
-	 * Instantiates a new door.
-	 * 
-	 * @param door
-	 *            the door
-	 */
-	public Door(I_DoorState door) {
-		if (door == null)
+	public Door(I_HaveDoorStates doorState) {
+		if (doorState == null)
 			throw new RuntimeException("Stuff passed in Doors is null");
-		_doorState = door;
+		_doorState = doorState;
 		_isStateChanged = false;
 	}
 
-	/**
-	 * Block door.
-	 */
 	public void blockDoor() {
 		_passage.blockDoors();
 	}
 
-	/**
-	 * Clear door.
-	 */
 	public void clearDoor() {
 		_passage.clearDoors();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
+	@Override
+	public boolean contains(Point point) {
+		return _origin.equals(point);
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null)
@@ -78,172 +54,87 @@ public class Door implements I_ChangeState, I_Interactive {
 		return true;
 	}
 
-	/**
-	 * Gets the origin.
-	 * 
-	 * @return the origin
-	 */
-	public Point getOrigin() {
-		return _origin;
-	}
-
-	/**
-	 * Gets the passage.
-	 * 
-	 * @return the passage
-	 */
-	public A_Passage getPassage() {
-		return _passage;
-	}
-
-	/**
-	 * Gets the room.
-	 * 
-	 * @return the room
-	 */
-	public RegionRoom getRoom() {
-		return _room;
-	}
-
-	/**
-	 * Gets the sibling.
-	 * 
-	 * @return the sibling
-	 */
-	public Door getSibling() {
-		return _passage.getDoorSibling(this);
-	}
-
-	/**
-	 * Gets the state.
-	 * 
-	 * @return the state
-	 */
-	public I_DoorState getState() {
-		return _doorState;
-	}
-
-	/**
-	 * Gets the symbol.
-	 * 
-	 * @return the symbol
-	 */
-	public int getSymbol() {
-		return _doorState.getSymbol();
-	}
-
-	/**
-	 * Gets the symbol simple.
-	 * 
-	 * @return the symbol simple
-	 */
-	public int getSymbolSimple() {
-		return _doorState.getSymbolSimple();
-	}
-
-	/**
-	 * Interact.
-	 * 
-	 * @return true, if successful
-	 */
-	public boolean interact() {
-		return _doorState.interact(this);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see contracts.I_ChangeState#isStateChanged()
-	 */
-	@Override
-	public boolean isStateChanged() {
-		return _isStateChanged;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see contracts.I_ChangeState#isStateChanged(boolean)
-	 */
-	@Override
-	public void isStateChanged(boolean isChanged) {
-		_isStateChanged = isChanged;
-	}
-
-	/**
-	 * Sets the door state.
-	 * 
-	 * @param door
-	 *            the new door state
-	 */
-	public void setDoorState(I_DoorState door) {
-		if (door == null)
-			throw new RuntimeException("Negative");
-		_doorState = door;
-	}
-
-	/**
-	 * Sets the origin.
-	 * 
-	 * @param origin
-	 *            the new origin
-	 */
-	public void setOrigin(Point origin) {
-		_origin = origin;
-	}
-
-	/**
-	 * Sets the passage.
-	 * 
-	 * @param passage
-	 *            the new passage
-	 */
-	public void setPassage(A_Passage passage) {
-		_passage = passage;
-	}
-
-	/**
-	 * Sets the room.
-	 * 
-	 * @param room
-	 *            the new room
-	 */
-	public void setRoom(RegionRoom room) {
-		_room = room;
-	}
-
-	/* (non-Javadoc)
-	 * @see contracts.I_Interactive#getWidth()
-	 */
-	@Override
-	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	/* (non-Javadoc)
-	 * @see contracts.I_Interactive#getHeight()
-	 */
 	@Override
 	public int getHeight() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	/* (non-Javadoc)
-	 * @see contracts.I_Interactive#contains(model.point.Point)
-	 */
+	//
+	//
+	// public RegionRoom getRoom() {
+	// return _room;
+	// }
+
 	@Override
-	public boolean contains(Point point) {
-		return _origin.equals(point);
+	public Point getOrigin() {
+		return _origin;
 	}
 
-	/* (non-Javadoc)
-	 * @see contracts.I_Interactive#interact(model.player.Player, model.point.Point)
-	 */
+	//
+	//
+	// public I_HaveStates getState() {
+	// return _doorState;
+	// }
+
+	public A_Passage getPassage() {
+		return _passage;
+	}
+
+	public Door getSibling() {
+		return _passage.getDoorSibling(this);
+	}
+
+	//
+	//
+	// public boolean interact() {
+	// return _doorState.interact(this);
+	// }
+
+	public int getSymbol() {
+		return _doorState.getSymbol();
+	}
+
+	public int getSymbolSimple() {
+		return _doorState.getSymbolSimple();
+	}
+
+	@Override
+	public int getWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	@Override
 	public void interact(Player player, Point direction) {
-		// TODO Auto-generated method stub
-		
+		_doorState.interactedWell(player, direction);
+	}
+
+	@Override
+	public boolean isStateChanged() {
+		return _isStateChanged;
+	}
+
+	// public void setRoom(RegionRoom room) {
+	// _room = room;
+	// }
+
+	@Override
+	public void isStateChanged(boolean isChanged) {
+		_isStateChanged = isChanged;
+	}
+
+	public void setDoorState(I_HaveDoorStates door) {
+		if (door == null)
+			throw new RuntimeException("Negative");
+		_doorState = door;
+	}
+
+	public void setOrigin(Point origin) {
+		_origin = origin;
+	}
+
+	public void setPassage(A_Passage passage) {
+		_passage = passage;
 	}
 }

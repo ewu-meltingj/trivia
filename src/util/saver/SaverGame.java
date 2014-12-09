@@ -1,6 +1,3 @@
-/*
- * 
- */
 package util.saver;
 
 import java.io.File;
@@ -15,31 +12,18 @@ import model.region.RegionMaze;
 import util.maze.MazeBuilder;
 
 // TODO: Auto-generated Javadoc
-/**
- * The Class SaverGame.
- */
+
 public class SaverGame {
 
-	/**
-	 * Instantiates a new saver game.
-	 */
 	public SaverGame() {
 
 	}
 
-	/**
-	 * Clean.
-	 */
 	public void clean() {
 		new File("assets/player.ser").delete();
 		new File("assets/mazeAttributes.ser").delete();
 	}
 
-	/**
-	 * Load maze.
-	 * 
-	 * @return the region maze
-	 */
 	public RegionMaze loadMaze() {
 		try {
 			FileInputStream fileInputStream;
@@ -56,13 +40,6 @@ public class SaverGame {
 		}
 	}
 
-	/**
-	 * Load player.
-	 * 
-	 * @param maze
-	 *            the maze
-	 * @return the player
-	 */
 	public Player loadPlayer(RegionMaze maze) {
 		FileInputStream fileInputStream;
 		try {
@@ -77,14 +54,6 @@ public class SaverGame {
 		}
 	}
 
-	/**
-	 * Save.
-	 * 
-	 * @param maze
-	 *            the maze
-	 * @param player
-	 *            the player
-	 */
 	public void save(RegionMaze maze, Player player) {
 		try {
 			saveMaze(maze);
@@ -94,14 +63,6 @@ public class SaverGame {
 		}
 	}
 
-	/**
-	 * Save maze.
-	 * 
-	 * @param maze
-	 *            the maze
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
 	private void saveMaze(RegionMaze maze) throws IOException {
 		SaverMaze attributes = new SaverMaze(maze);
 		FileOutputStream fout;
@@ -110,14 +71,6 @@ public class SaverGame {
 		oos.writeObject(attributes);
 	}
 
-	/**
-	 * Save player.
-	 * 
-	 * @param player
-	 *            the player
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
 	private void savePlayer(Player player) throws IOException {
 		FileOutputStream fout;
 		fout = new FileOutputStream("assets/player.ser");

@@ -1,6 +1,3 @@
-/*
- * 
- */
 package view;
 
 import model.door.Door;
@@ -19,54 +16,29 @@ import com.googlecode.blacken.grid.BlackenPoint;
 import com.googlecode.blacken.terminal.TerminalInterface;
 
 // TODO: Auto-generated Javadoc
-/**
- * The Class View.
- * 
- * @author jeremy
- */
 
 public class View {
 
-	/** The Constant MAP_START. */
 	private final static BlackenPoint MAP_START = new BlackenPoint(0, 0);
 
-	/** The _upper left. */
 	private BlackenPoint _upperLeft = new BlackenPoint(0, 0);
 
-	/** The _term. */
 	private TerminalInterface _term;
 
-	/** The _refresher. */
 	private Refresher _refresher;
 
-	/** The _player. */
 	private Player _player;
 
-	/** The _maze. */
 	private RegionMaze _maze;
 
-	/** The _observer. */
 	private Observer _observer;
 
-	/** The _gui grid. */
 	private BlackenGrid<Integer> _guiGrid;
 
-	/** The _drawer. */
 	private Drawer _drawer;
 
-	/** The observer. */
 	Observer observer;
 
-	/**
-	 * Instantiates a new view.
-	 * 
-	 * @param maze
-	 *            the maze
-	 * @param player
-	 *            the player
-	 * @param terminal
-	 *            the terminal
-	 */
 	public View(RegionMaze maze, Player player, TerminalInterface terminal) {
 		_term = terminal;
 		_player = player;
@@ -81,9 +53,6 @@ public class View {
 		initGUI();
 	}
 
-	/**
-	 * Inits the gui.
-	 */
 	public void initGUI() {
 		_drawer.drawMaze();
 		_drawer.drawPassageAll(_maze.getPassages());
@@ -101,9 +70,6 @@ public class View {
 		refresh();
 	}
 
-	/**
-	 * Refresh.
-	 */
 	public void refresh() {
 		_observer.notifyAllElements();
 		_refresher.refresh();

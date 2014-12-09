@@ -1,12 +1,6 @@
-/*
- * 
- */
 package main;
 
-import java.util.Map;
-
 import model.player.Player;
-import model.point.Point;
 import model.region.RegionMaze;
 import terminal.Terminal;
 import util.maze.Interactive;
@@ -18,36 +12,16 @@ import view.View;
 
 import com.googlecode.blacken.helper.ViewerHelper;
 
-import contracts.I_Interactive;
 import control.player.ControlPlayer;
 
 // TODO: Auto-generated Javadoc
-/**
- * The Class Application.
- * 
- * @author jeremy
- */
+
 public class Application {
 
-	/**
-	 * Checks for completed maze.
-	 * 
-	 * @param player
-	 *            the player
-	 * @param maze
-	 *            the maze
-	 * @return true, if successful
-	 */
 	public static boolean hasCompletedMaze(Player player, RegionMaze maze) {
 		return maze.getRoomEnd().contains(player.getPosition());
 	}
 
-	/**
-	 * The main method.
-	 * 
-	 * @param args
-	 *            the arguments
-	 */
 	public static void main(String[] args) {
 		SaverGame saver = new SaverGame();
 
@@ -56,16 +30,16 @@ public class Application {
 
 		RegionMaze maze = new RegionMaze(3);
 		MazeBuilder mBuilder = new MazeBuilder();
-		
-		
+
 		Interactive activeElements = new Interactive(mBuilder.create(maze));
-		
+
 		Player player = new Player(maze.getRoomStart());
 
 		MazeTraverser trav = new MazeTraverser(maze, player);
 
 		// create control
-		ControlPlayer playerControl = new ControlPlayer(mazeIO, player, activeElements);
+		ControlPlayer playerControl = new ControlPlayer(mazeIO, player,
+				activeElements);
 
 		// create view
 		new ViewerHelper(mazeIO.getTerminal(), "Lazer Slug Trivia Maze",
@@ -89,5 +63,4 @@ public class Application {
 				TextMessage.END_MESSAGE).run();
 		mazeIO.close();
 	}
-
 }

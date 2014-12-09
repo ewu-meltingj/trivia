@@ -1,6 +1,3 @@
-/*
- * 
- */
 package terminal;
 
 import com.googlecode.blacken.colors.ColorNames;
@@ -18,39 +15,22 @@ import control.player.action.ActionVoid;
 import control.player.action.I_ActionHandler;
 
 // TODO: Auto-generated Javadoc
-/**
- * The Class Terminal.
- * 
- * @author jeremy
- */
+
 public class Terminal {
 
-	/** The _terminal. */
 	private TerminalInterface _terminal;
 
-	/** The palette. */
 	private ColorPalette palette;
 
-	/**
-	 * Instantiates a new terminal.
-	 */
 	public Terminal() {
 		_terminal = new CursesLikeAPI(new SwingTerminal());
 		init();
 	}
 
-	/**
-	 * Close.
-	 */
 	public void close() {
 		_terminal.quit();
 	}
 
-	/**
-	 * Gets the key.
-	 * 
-	 * @return the key
-	 */
 	public I_ActionHandler getKey() {
 		int action = _terminal.getch();
 
@@ -68,26 +48,15 @@ public class Terminal {
 			return new ActionVoid();
 	}
 
-	/**
-	 * Gets the terminal.
-	 * 
-	 * @return the terminal
-	 */
 	public TerminalInterface getTerminal() {
 		return _terminal;
 	}
 
-	/**
-	 * Inits the.
-	 */
 	private void init() {
 		_terminal.init("Trivia Maze", 25, 80);
 		setPallete();
 	}
 
-	/**
-	 * Sets the pallete.
-	 */
 	private void setPallete() {
 		palette = new ColorPalette();
 		palette.addAll(ColorNames.XTERM_256_COLORS, false);

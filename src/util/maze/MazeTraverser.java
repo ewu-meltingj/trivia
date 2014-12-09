@@ -1,6 +1,3 @@
-/*
- * 
- */
 package util.maze;
 
 import model.door.Door;
@@ -11,43 +8,25 @@ import model.region.RegionMaze;
 import model.region.RegionRoom;
 
 // TODO: Auto-generated Javadoc
-/**
- * The Class MazeTraverser.
- */
+
 public class MazeTraverser {
 
-	/** The _maze to check. */
 	private int[][] _mazeToCheck;
 
-	/** The _was here. */
 	private boolean[][] _wasHere;
 
-	/** The _maze. */
 	private RegionMaze _maze;
 
-	/** The _maze height. */
 	private int _mazeHeight;
 
-	/** The _maze width. */
 	private int _mazeWidth;
 
-	/** The _player. */
 	private Player _player;
 
-	/** The _start. */
 	private Point _start;
 
-	/** The _end. */
 	private Point _end;
 
-	/**
-	 * Instantiates a new maze traverser.
-	 * 
-	 * @param maze
-	 *            the maze
-	 * @param player
-	 *            the player
-	 */
 	public MazeTraverser(RegionMaze maze, Player player) {
 		_maze = maze;
 		_mazeHeight = _maze.getHeight();
@@ -61,18 +40,12 @@ public class MazeTraverser {
 		drawPassages();
 	}
 
-	/**
-	 * Draw maze.
-	 */
 	private void drawMaze() {
 		for (int y = 0; y < _mazeHeight; y++)
 			for (int x = 0; x < _mazeWidth; x++)
 				_mazeToCheck[y][x] = 2;
 	}
 
-	/**
-	 * Draw passages.
-	 */
 	private void drawPassages() {
 		for (A_Passage passage : _maze.getPassages()) {
 
@@ -89,9 +62,6 @@ public class MazeTraverser {
 		}
 	}
 
-	/**
-	 * Draw rooms and doors.
-	 */
 	private void drawRoomsAndDoors() {
 		for (RegionRoom room : _maze.getRooms()) {
 			int yRoomOrigin = room.getOrigin().getY();
@@ -108,16 +78,10 @@ public class MazeTraverser {
 		}
 	}
 
-	/**
-	 * Inits the.
-	 */
 	private void init() {
 		drawRoomsAndDoors();
 	}
 
-	/**
-	 * Prints the maze.
-	 */
 	public void printMaze() {
 		for (int y = 0; y < _mazeHeight; y++) {
 			for (int x = 0; x < _mazeWidth; x++)
@@ -127,15 +91,6 @@ public class MazeTraverser {
 		System.out.println("\n");
 	}
 
-	/**
-	 * Recursive solve.
-	 * 
-	 * @param y
-	 *            the y
-	 * @param x
-	 *            the x
-	 * @return true, if successful
-	 */
 	public boolean recursiveSolve(int y, int x) {
 		if (y == _end.getY() && x == _end.getX())
 			return true; // If you reached the end
@@ -162,11 +117,6 @@ public class MazeTraverser {
 		return false;
 	}
 
-	/**
-	 * Solve maze.
-	 * 
-	 * @return true, if successful
-	 */
 	public boolean solveMaze() {
 		init();
 		for (int row = 0; row < _mazeHeight; row++)

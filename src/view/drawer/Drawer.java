@@ -1,6 +1,3 @@
-/*
- * 
- */
 package view.drawer;
 
 import java.util.List;
@@ -18,55 +15,27 @@ import com.googlecode.blacken.grid.BlackenGrid;
 import com.googlecode.blacken.grid.BlackenPoint;
 
 // TODO: Auto-generated Javadoc
-/**
- * The Class Drawer.
- * 
- * @author jeremy
- */
 
 public class Drawer {
 
-	/** The _b grid. */
 	private BlackenGrid<Integer> _bGrid;
 
-	/** The _old block. */
 	private Integer _oldBlock = TextMaze.FLOOR; // feels like code smell
 
-	/**
-	 * Instantiates a new drawer.
-	 * 
-	 * @param bGrid
-	 *            the b grid
-	 */
 	public Drawer(BlackenGrid<Integer> bGrid) {
 		_bGrid = bGrid;
 	}
 
-	/**
-	 * Draw door.
-	 * 
-	 * @param door
-	 *            the door
-	 */
 	public void drawDoor(Door door) {
 		Point origin = door.getOrigin();
 		_bGrid.set(origin.getY(), origin.getX(), door.getSymbol());
 	}
 
-	/**
-	 * Draw door all.
-	 * 
-	 * @param doorList
-	 *            the door list
-	 */
 	public void drawDoorAll(List<Door> doorList) {
 		for (Door door : doorList)
 			drawDoor(door);
 	}
 
-	/**
-	 * Draw maze.
-	 */
 	public void drawMaze() {
 		_bGrid.box(_bGrid.getHeight(), _bGrid.getWidth(), 0, 0,
 				TextMaze.MAZE_WALL_LEFT, TextMaze.MAZE_WALL_RIGHT,
@@ -77,20 +46,11 @@ public class Drawer {
 		drawMazeRandoms();
 	}
 
-	/**
-	 * Draw maze randoms.
-	 */
 	private void drawMazeRandoms() {
 		drawMazeRandoms(TextSpecial.SPECIAL_GRAVE);
 		drawMazeRandoms(TextSpecial.SPECIAL_FLOWER);
 	}
 
-	/**
-	 * Draw maze randoms.
-	 * 
-	 * @param what
-	 *            the what
-	 */
 	private void drawMazeRandoms(int what) {
 		int randElements = 15;
 		Random rand = new Random();
@@ -109,12 +69,6 @@ public class Drawer {
 		}
 	}
 
-	/**
-	 * Draw passage.
-	 * 
-	 * @param passage
-	 *            the passage
-	 */
 	public void drawPassage(A_Passage passage) {
 		Point pointOrigin = passage.getOrigin();
 		Point pointEnd = passage.getEnd();
@@ -125,58 +79,26 @@ public class Drawer {
 			drawPassageVertical(pointOrigin, pointEnd, _bGrid);
 	}
 
-	/**
-	 * Draw passage all.
-	 * 
-	 * @param passageList
-	 *            the passage list
-	 */
 	public void drawPassageAll(List<A_Passage> passageList) {
 		for (A_Passage passage : passageList)
 			drawPassage(passage);
 	}
 
-	/**
-	 * Draw passage horizontal.
-	 * 
-	 * @param pointOrigin
-	 *            the point origin
-	 * @param pointEnd
-	 *            the point end
-	 * @param bGrid
-	 *            the b grid
-	 */
 	private void drawPassageHorizontal(Point pointOrigin, Point pointEnd,
 			BlackenGrid<Integer> bGrid) {
 		for (int yCoord = pointOrigin.getY(); yCoord <= pointEnd.getY(); yCoord++)
 			bGrid.set(yCoord, pointOrigin.getX(), TextMaze.FLOOR_HALL);
 	}
 
-	/**
-	 * Draw passage vertical.
-	 * 
-	 * @param pointOrigin
-	 *            the point origin
-	 * @param pointEnd
-	 *            the point end
-	 * @param bGrid
-	 *            the b grid
-	 */
 	private void drawPassageVertical(Point pointOrigin, Point pointEnd,
 			BlackenGrid<Integer> bGrid) {
 		for (int xCoord = pointOrigin.getX(); xCoord <= pointEnd.getX(); xCoord++)
 			bGrid.set(pointEnd.getY(), xCoord, TextMaze.FLOOR_HALL);
 	}
 
-	/**
-	 * Draw player.
-	 * 
-	 * @param player
-	 *            the player
-	 */
 	public void drawPlayer(Player player) {
-		BlackenPoint playerPointCurr = new BlackenPoint(player
-				.getPosition().getY(), player.getPosition().getX());
+		BlackenPoint playerPointCurr = new BlackenPoint(player.getPosition()
+				.getY(), player.getPosition().getX());
 		BlackenPoint playerPointPrev = new BlackenPoint(player
 				.getPlayerPositionPrev().getY(), player.getPlayerPositionPrev()
 				.getX());
@@ -187,12 +109,6 @@ public class Drawer {
 		player.setPlayerPositionPrev(player.getPosition());
 	}
 
-	/**
-	 * Draw room.
-	 * 
-	 * @param room
-	 *            the room
-	 */
 	public void drawRoom(RegionRoom room) {
 		BlackenGrid<Integer> roomGrid = new BlackenGrid<Integer>(0,
 				room.getHeight(), room.getWidth(), room.getOrigin().getY(),
@@ -207,26 +123,11 @@ public class Drawer {
 		_bGrid.addGrid(roomGrid);
 	}
 
-	/**
-	 * Draw room all.
-	 * 
-	 * @param roomList
-	 *            the room list
-	 */
 	public void drawRoomAll(List<RegionRoom> roomList) {
 		for (RegionRoom room : roomList)
 			drawRoom(room);
 	}
 
-	/**
-	 * Passage is horizontal.
-	 * 
-	 * @param pointOrigin
-	 *            the point origin
-	 * @param pointEnd
-	 *            the point end
-	 * @return true, if successful
-	 */
 	private boolean passageIsHorizontal(Point pointOrigin, Point pointEnd) {
 		return pointOrigin.getY() != pointEnd.getY();
 	}
