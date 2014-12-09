@@ -3,13 +3,13 @@
  */
 package model.passage;
 
-import contracts.I_Interactive;
 import model.door.Door;
 import model.door.DoorStateBlocked;
 import model.door.DoorStateCleared;
 import model.door.DoorStateQuestion;
 import model.point.Point;
 import model.region.RegionRoom;
+import contracts.I_Interactive;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -70,15 +70,6 @@ public abstract class A_Passage implements I_Interactive {
 	}
 
 	/**
-	 * Contains.
-	 * 
-	 * @param point
-	 *            the point
-	 * @return true, if successful
-	 */
-	public abstract boolean contains(Point point);
-
-	/**
 	 * Gets the door first.
 	 * 
 	 * @return the door first
@@ -109,12 +100,22 @@ public abstract class A_Passage implements I_Interactive {
 		return _secondDoor;
 	}
 
+	public boolean contains(Point point) {
+		int x = point.getX();
+		int y = point.getY();
+
+		if (x >= _passageOrigin.getX() && x <= _passageEnd.getX())
+			if (y >= _passageOrigin.getY() && y <= _passageEnd.getY())
+				return true;
+		return false;
+	}
+
 	/**
 	 * Gets the point end.
 	 * 
 	 * @return the point end
 	 */
-	public Point getPointEnd() {
+	public Point getEnd() {
 		return _passageEnd;
 	}
 
@@ -123,8 +124,15 @@ public abstract class A_Passage implements I_Interactive {
 	 * 
 	 * @return the point origin
 	 */
-	public Point getPointOrigin() {
+	public Point getOrigin() {
 		return _passageOrigin;
+	}
+	
+	public int getHeight() {
+		return _passageEnd.getX() - _passageOrigin.getX();
+	}
+	public int getWidth() {
+		return  _passageEnd.getY() - _passageOrigin.getY();
 	}
 
 	/**

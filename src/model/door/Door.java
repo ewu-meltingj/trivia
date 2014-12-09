@@ -210,4 +210,22 @@ public class Door implements I_ChangeState, I_Interactive {
 	public void setRoom(RegionRoom room) {
 		_room = room;
 	}
+
+	/* (non-Javadoc)
+	 * @see contracts.I_Interactive#getWidth()
+	 */
+	@Override
+	public int getWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see contracts.I_Interactive#getHeight()
+	 */
+	@Override
+	public int getHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

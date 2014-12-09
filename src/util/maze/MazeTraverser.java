@@ -76,8 +76,8 @@ public class MazeTraverser {
 	private void drawPassages() {
 		for (A_Passage passage : _maze.getPassages()) {
 
-			Point origin = passage.getPointOrigin();
-			Point end = passage.getPointEnd();
+			Point origin = passage.getOrigin();
+			Point end = passage.getEnd();
 			int lenthHorizontal = end.getX() - origin.getX();
 			int lenthVertical = end.getY() - origin.getY();
 

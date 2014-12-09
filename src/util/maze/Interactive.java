@@ -12,8 +12,9 @@
 package util.maze;
 
 /**
- * @author jeremy
+ * The Class Interactive.
  *
+ * @author jeremy
  */
 public class Interactive {
 

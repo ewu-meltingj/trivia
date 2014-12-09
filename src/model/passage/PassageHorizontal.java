@@ -31,20 +31,6 @@ public class PassageHorizontal extends A_Passage {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see model.passage.A_Passage#contains(model.point.Point)
-	 */
-	@Override
-	public boolean contains(Point point) {
-		if (point.getX() > this._passageOrigin.getX()
-				&& point.getX() < this._passageEnd.getX()
-				&& point.getY() == this._passageOrigin.getY())
-			return true;
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see model.passage.A_Passage#isStateChanged(boolean)
 	 */
 	@Override

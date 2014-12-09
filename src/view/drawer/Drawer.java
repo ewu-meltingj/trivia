@@ -116,8 +116,8 @@ public class Drawer {
 	 *            the passage
 	 */
 	public void drawPassage(A_Passage passage) {
-		Point pointOrigin = passage.getPointOrigin();
-		Point pointEnd = passage.getPointEnd();
+		Point pointOrigin = passage.getOrigin();
+		Point pointEnd = passage.getEnd();
 
 		if (passageIsHorizontal(pointOrigin, pointEnd))
 			drawPassageHorizontal(pointOrigin, pointEnd, _bGrid);

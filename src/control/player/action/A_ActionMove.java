@@ -52,6 +52,7 @@ public abstract class A_ActionMove {
 	private boolean isAPassableDoor(Point possibleMove, Player player,
 			RegionRoom currentRoom) {
 		for (Door door : currentRoom.getDoors()) {
+
 			if (door.getOrigin().equals(possibleMove)) {
 				player.setRoom(door.getRoom());
 				return door.interact();
@@ -73,11 +74,15 @@ public abstract class A_ActionMove {
 	 * @return true, if is a passage
 	 */
 	private boolean isAPassage(Point possibleMove, RegionRoom currentRoom) {
+
 		for (Door door : currentRoom.getDoors()) {
 			A_Passage passage = door.getPassage();
-			if (passage.contains(possibleMove))
+			if (passage.contains(possibleMove)) {
 				return true;
+			}
+
 		}
+		System.out.println("fail");
 		return false;
 	}
 

@@ -28,19 +28,7 @@ public class PassageVertical extends A_Passage {
 		_secondDoor.setOrigin(originTop(bottomRoom));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see model.passage.A_Passage#contains(model.point.Point)
-	 */
-	@Override
-	public boolean contains(Point point) {
-		if (point.getY() > this._passageOrigin.getY()
-				&& point.getY() < this._passageEnd.getY()
-				&& point.getX() == this._passageOrigin.getX())
-			return true;
-		return false;
-	}
+	
 
 	/*
 	 * (non-Javadoc)
