@@ -6,11 +6,8 @@ import contracts.I_HaveDoorState;
 
 
 public class DoorStateBlocked implements I_HaveDoorState {
-	
-//	private Door _door;
 
-	public DoorStateBlocked() {
-	}
+	public DoorStateBlocked() {}
 
 	@Override
 	public int getSymbol() {
@@ -25,10 +22,5 @@ public class DoorStateBlocked implements I_HaveDoorState {
 	@Override
 	public void interact(Player player, Point direction) {
 		player.move(Point.refuse(direction));
-	}
-
-	@Override
-	public void setdoor(Door door) {
-//		_door = door;
 	}
 }

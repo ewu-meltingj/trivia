@@ -15,8 +15,6 @@ import com.googlecode.blacken.grid.BlackenGrid;
 import com.googlecode.blacken.grid.BlackenPoint;
 import com.googlecode.blacken.terminal.TerminalInterface;
 
-// TODO: Auto-generated Javadoc
-
 public class View {
 
 	private final static BlackenPoint MAP_START = new BlackenPoint(0, 0);
@@ -49,7 +47,6 @@ public class View {
 		_drawer = new Drawer(_guiGrid);
 		_refresher = new Refresher(_term, MAP_START, _upperLeft, _guiGrid,
 				_player);
-
 		initGUI();
 	}
 

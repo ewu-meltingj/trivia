@@ -3,8 +3,6 @@ package view.observer;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
-
 public class Observer {
 
 	private List<I_Observe> doorObservers = new ArrayList<I_Observe>();

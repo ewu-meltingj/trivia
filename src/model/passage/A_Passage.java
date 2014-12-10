@@ -10,8 +10,6 @@ import model.point.Point;
 import model.region.RegionRoom;
 import contracts.I_UserInteract;
 
-// TODO: Auto-generated Javadoc
-
 public abstract class A_Passage implements I_UserInteract {
 
 	protected Door _firstDoor;
@@ -40,17 +38,6 @@ public abstract class A_Passage implements I_UserInteract {
 		_secondDoor.setDoorState(new DoorStateCleared());
 	}
 
-	@Override
-	public boolean contains(Point point) {
-		int x = point.getX();
-		int y = point.getY();
-
-		if (x >= _passageOrigin.getX() && x <= _passageEnd.getX())
-			if (y >= _passageOrigin.getY() && y <= _passageEnd.getY())
-				return true;
-		return false;
-	}
-
 	public Door getDoorFirst() {
 		return _firstDoor;
 	}
@@ -69,17 +56,14 @@ public abstract class A_Passage implements I_UserInteract {
 		return _passageEnd;
 	}
 
-	@Override
 	public int getHeight() {
 		return _passageEnd.getY() - _passageOrigin.getY();
 	}
 
-	@Override
 	public Point getOrigin() {
 		return _passageOrigin;
 	}
-
-	@Override
+	
 	public int getWidth() {
 		return _passageEnd.getX() - _passageOrigin.getX();
 	}
@@ -102,7 +86,5 @@ public abstract class A_Passage implements I_UserInteract {
 		for (int x = 1; x < lenthHorizontal; x++)
 		active.put(new Point(origin.getY() , origin.getX() + x), this);
 	}
-
-	public abstract void isStateChanged(boolean state);
 
 }

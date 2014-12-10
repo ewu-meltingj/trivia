@@ -6,8 +6,6 @@ import java.util.List;
 import model.region.RegionMaze;
 import model.region.RegionRoom;
 
-// TODO: Auto-generated Javadoc
-
 public class SaverMaze implements Serializable {
 
 	private static final long serialVersionUID = 2398789582979807509L;

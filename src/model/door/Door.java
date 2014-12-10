@@ -19,20 +19,15 @@ public class Door implements I_GetObserved, I_UserInteract {
 	private boolean _isStateChanged;
 
 	public Door(I_HaveDoorState doorState) {
-		if (doorState == null)
-			throw new RuntimeException("Stuff passed in Doors is null");
 		_doorState = doorState;
-		_doorState.setdoor(this);
 		_isStateChanged = false;
 	}
 
 	public void blockDoor() {
-		// _isStateChanged = true;
 		_passage.blockDoors();
 	}
 
 	public void clearDoor() {
-		// _isStateChanged = true;
 		_passage.clearDoors();
 	}
 
@@ -69,14 +64,12 @@ public class Door implements I_GetObserved, I_UserInteract {
 		return _doorState.getSymbolSimple();
 	}
 
-	@Override
 	public int getWidth() {
 		return 1;
 	}
 
 	@Override
 	public void interact(Player player, Point direction) {
-		System.out.println("this is a door");
 		_doorState.interact(player, direction);
 	}
 
@@ -91,8 +84,6 @@ public class Door implements I_GetObserved, I_UserInteract {
 	}
 
 	public void setDoorState(I_HaveDoorState door) {
-		if (door == null)
-			throw new RuntimeException("Negative");
 		_doorState = door;
 		_isStateChanged = true;
 	}

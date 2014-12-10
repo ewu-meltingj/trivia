@@ -8,8 +8,6 @@ import model.region.RegionMaze;
 import model.region.RegionRoom;
 import contracts.I_UserInteract;
 
-// TODO: Auto-generated Javadoc
-
 public class MazeBuilder {
 
 	private RegionMaze _maze;
@@ -60,7 +58,6 @@ public class MazeBuilder {
 					createRoomOrigin(roomId), ROOM_WIDTH, ROOM_HEIGHT);
 			maze.addRoom(roomId, roomCurrent);
 
-			// connect rooms
 			if (hasRoomAdjacentLeft(roomId)) {
 				RegionRoom roomLeft = maze.getRoom(roomId - 1);
 				addDoorsLR(roomLeft, roomCurrent);
@@ -75,8 +72,8 @@ public class MazeBuilder {
 	}
 
 	public Point createRoomOrigin(int roomID) {
-		int offsetX = ROOM_WIDTH + ROOM_PADDING;// 20
-		int offsetY = ROOM_HEIGHT + ROOM_PADDING;// 8
+		int offsetX = ROOM_WIDTH + ROOM_PADDING;
+		int offsetY = ROOM_HEIGHT + ROOM_PADDING;
 		int yCoord = roomID / _totalSideRooms;
 		int xCoord = roomID % _totalSideRooms;
 		return new Point(yCoord * offsetY + ROOM_PADDING, xCoord * offsetX
@@ -91,13 +88,9 @@ public class MazeBuilder {
 		return (ROOM_WIDTH + ROOM_PADDING) * _totalSideRooms + ROOM_PADDING;
 	}
 
-	// check if the current room has a neighbor to its left.
-
 	private boolean hasRoomAdjacentLeft(int roomId) {
 		return _maze.hasRoom(roomId - 1) && roomId % _totalSideRooms != 0;
 	}
-
-	// check if the current room has a neighbor above itself.
 
 	private boolean hasRoomAdjacentUp(int roomId) {
 		return _maze.hasRoom(roomId - _totalSideRooms);

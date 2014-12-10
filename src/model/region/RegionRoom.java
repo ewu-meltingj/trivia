@@ -13,10 +13,6 @@ import model.player.Player;
 import model.point.Point;
 import contracts.I_UserInteract;
 
-// TODO: Auto-generated Javadoc
-
-// TODO using null values is a bad practice. Fix actions so that they are not
-// needed.
 public class RegionRoom extends A_Region implements Serializable,
 		I_UserInteract {
 
@@ -42,7 +38,6 @@ public class RegionRoom extends A_Region implements Serializable,
 
 	@Override
 	public void interact(Player player, Point direction) {
-		System.out.println("this is a room");
 			player.move(direction);
 	}
 

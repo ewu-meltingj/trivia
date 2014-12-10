@@ -2,8 +2,6 @@ package model.region;
 
 import model.point.Point;
 
-// TODO: Auto-generated Javadoc
-
 public abstract class A_Region {
 
 	protected int _width;

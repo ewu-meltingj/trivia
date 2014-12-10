@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class QuestionManager {
 
-	private final int _trivialQuestionAmount = 19; // used as placeholder
+	private final int _trivialQuestionAmount = 19; // used as placeholder to demonstrate concept
 
 	private Random _random;
 

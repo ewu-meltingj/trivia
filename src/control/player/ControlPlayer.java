@@ -1,7 +1,6 @@
 package control.player;
 
 import model.player.Player;
-import terminal.Terminal;
 import util.maze.Interactive;
 import control.player.action.I_ActionHandler;
 

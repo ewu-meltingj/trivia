@@ -3,20 +3,12 @@ package model.passage;
 import model.point.Point;
 import model.region.RegionRoom;
 
-// TODO: Auto-generated Javadoc
-
 public class PassageVertical extends A_Passage {
 
 	public PassageVertical(RegionRoom topRoom, RegionRoom bottomRoom) {
 		super(topRoom, bottomRoom);
 		_firstDoor.setOrigin(originBottom(topRoom));
 		_secondDoor.setOrigin(originTop(bottomRoom));
-	}
-
-	@Override
-	public void isStateChanged(boolean state) {
-		_firstDoor.isStateChanged(true);
-		_secondDoor.isStateChanged(true);
 	}
 
 	private Point originBottom(RegionRoom room) {

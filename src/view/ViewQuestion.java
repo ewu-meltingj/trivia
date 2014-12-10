@@ -10,8 +10,6 @@ import com.googlecode.blacken.terminal.TerminalViewInterface;
 import com.googlecode.blacken.terminal.editing.CodepointCallbackInterface;
 import com.googlecode.blacken.terminal.editing.SingleLine;
 
-// TODO: Auto-generated Javadoc
-
 public class ViewQuestion implements CodepointCallbackInterface {
 
 	private final TerminalInterface term;

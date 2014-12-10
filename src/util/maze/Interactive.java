@@ -26,7 +26,6 @@ public class Interactive {
 		_interactiveGrid.put(point, active);
 	}
 
-
 	public void addToMapAll(I_UserInteract[] active) {
 		for (int i = 0; i < active.length; i++)
 			addToMap(active[i]);
@@ -42,7 +41,7 @@ public class Interactive {
 	}
 
 	public boolean isInteractive(Player player, Point direction) {
-		Point possibleMove = Point.translate(player.getPosition(), direction);
+		Point possibleMove = player.possible(direction);
 		return _interactiveGrid.containsKey(possibleMove);
 	}
 }

@@ -14,8 +14,6 @@ import util.text.TextSpecial;
 import com.googlecode.blacken.grid.BlackenGrid;
 import com.googlecode.blacken.grid.BlackenPoint;
 
-// TODO: Auto-generated Javadoc
-
 public class Drawer {
 
 	private BlackenGrid<Integer> _bGrid;
@@ -73,27 +71,21 @@ public class Drawer {
 		Point pointOrigin = passage.getOrigin();
 		Point pointEnd = passage.getEnd();
 
-		if (passageIsHorizontal(pointOrigin, pointEnd))
-			drawPassageHorizontal(pointOrigin, pointEnd, _bGrid);
-		else
-			drawPassageVertical(pointOrigin, pointEnd, _bGrid);
+		int lenthHorizontal = pointEnd.getX() - pointOrigin.getX();
+		int lenthVertical = pointEnd.getY() - pointOrigin.getY();
+
+		for (int y = 0; y < lenthVertical; y++)
+			_bGrid.set(y + pointOrigin.getY(), pointOrigin.getX(),
+					TextMaze.FLOOR_HALL);
+
+		for (int x = 0; x < lenthHorizontal; x++)
+			_bGrid.set(pointOrigin.getY(), pointOrigin.getX() + x,
+					TextMaze.FLOOR_HALL);
 	}
 
 	public void drawPassageAll(List<A_Passage> passageList) {
 		for (A_Passage passage : passageList)
 			drawPassage(passage);
-	}
-
-	private void drawPassageHorizontal(Point pointOrigin, Point pointEnd,
-			BlackenGrid<Integer> bGrid) {
-		for (int yCoord = pointOrigin.getY(); yCoord <= pointEnd.getY(); yCoord++)
-			bGrid.set(yCoord, pointOrigin.getX(), TextMaze.FLOOR_HALL);
-	}
-
-	private void drawPassageVertical(Point pointOrigin, Point pointEnd,
-			BlackenGrid<Integer> bGrid) {
-		for (int xCoord = pointOrigin.getX(); xCoord <= pointEnd.getX(); xCoord++)
-			bGrid.set(pointEnd.getY(), xCoord, TextMaze.FLOOR_HALL);
 	}
 
 	public void drawPlayer(Player player) {
@@ -126,9 +118,5 @@ public class Drawer {
 	public void drawRoomAll(List<RegionRoom> roomList) {
 		for (RegionRoom room : roomList)
 			drawRoom(room);
-	}
-
-	private boolean passageIsHorizontal(Point pointOrigin, Point pointEnd) {
-		return pointOrigin.getY() != pointEnd.getY();
 	}
 }

@@ -5,11 +5,8 @@ import model.point.Point;
 import contracts.I_HaveDoorState;
 
 public class DoorStateCleared implements I_HaveDoorState {
-	
-//	private Door _door;
 
-	public DoorStateCleared() {
-	}
+	public DoorStateCleared() {}
 
 	@Override
 	public int getSymbol() {
@@ -24,10 +21,5 @@ public class DoorStateCleared implements I_HaveDoorState {
 	@Override
 	public void interact(Player player, Point direction) {
 		player.move(direction);
-	}
-
-	@Override
-	public void setdoor(Door door) {
-//		_door = door;
 	}
 }

@@ -7,8 +7,6 @@ import model.point.Point;
 import model.region.RegionMaze;
 import model.region.RegionRoom;
 
-// TODO: Auto-generated Javadoc
-
 public class MazeTraverser {
 
 	private int[][] _mazeToCheck;
@@ -93,25 +91,24 @@ public class MazeTraverser {
 
 	public boolean recursiveSolve(int y, int x) {
 		if (y == _end.getY() && x == _end.getX())
-			return true; // If you reached the end
+			return true;
 		if (_mazeToCheck[y][x] == 2 || _wasHere[y][x])
 			return false;
-		// If you are on a wall or already were here
 		_wasHere[y][x] = true;
-		if (x != 0) // Checks if not on left edge
-			if (recursiveSolve(y - 1, x)) { // Recalls method one to the left
+		if (x != 0)
+			if (recursiveSolve(y - 1, x)) {
 				return true;
 			}
-		if (x != _mazeWidth - 1) // Checks if not on right edge
-			if (recursiveSolve(y + 1, x)) { // Recalls method one to the right
+		if (x != _mazeWidth - 1)
+			if (recursiveSolve(y + 1, x)) {
 				return true;
 			}
-		if (y != 0) // Checks if not on top edge
-			if (recursiveSolve(y, x - 1)) { // Recalls method one up
+		if (y != 0)
+			if (recursiveSolve(y, x - 1)) {
 				return true;
 			}
-		if (y != _mazeHeight - 1) // Checks if not on bottom edge
-			if (recursiveSolve(y, x + 1)) { // Recalls method one down
+		if (y != _mazeHeight - 1)
+			if (recursiveSolve(y, x + 1)) {
 				return true;
 			}
 		return false;
@@ -124,5 +121,4 @@ public class MazeTraverser {
 				_wasHere[row][col] = false;
 		return recursiveSolve(_start.getY(), _start.getX());
 	}
-
 }

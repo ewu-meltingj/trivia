@@ -2,8 +2,6 @@ package model.point;
 
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
-
 public class Point implements Serializable {
 
 	private static final long serialVersionUID = -5522070899577942L;

@@ -1,6 +1,3 @@
-/*
- * 
- */
 package view.refresher;
 
 import java.util.EnumSet;
@@ -18,51 +15,22 @@ import com.googlecode.blacken.terminal.CellWalls;
 import com.googlecode.blacken.terminal.TerminalInterface;
 import com.googlecode.blacken.terminal.TerminalStyle;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Refresher.
- * 
- * @author jeremy
- */
-
-// TODO Make the Refresh more modular.
 public class Refresher {
 
-	/** The _term. */
 	private TerminalInterface _term;
 
-	/** The _map start. */
 	private BlackenPoint _mapStart;
 
-	/** The _upper left. */
 	private BlackenPoint _upperLeft;
 
-	/** The _grid. */
 	private BlackenGrid<Integer> _grid;
 
-	/** The _noise plane. */
 	private float _noisePlane;
 
-	/** The rand. */
 	private Random rand;
 
-	/** The _player. */
 	private Player _player;
 
-	/**
-	 * Instantiates a new refresher.
-	 * 
-	 * @param term
-	 *            the term
-	 * @param mapStart
-	 *            the map start
-	 * @param upperLeft
-	 *            the upper left
-	 * @param grid
-	 *            the grid
-	 * @param player
-	 *            the player
-	 */
 	public Refresher(TerminalInterface term, BlackenPoint mapStart,
 			BlackenPoint upperLeft, BlackenGrid<Integer> grid, Player player) {
 
@@ -79,28 +47,12 @@ public class Refresher {
 		_noisePlane = rand.nextFloat();
 	}
 
-	/**
-	 * Checks if is fun element.
-	 * 
-	 * @param character
-	 *            the character
-	 * @return true, if is fun element
-	 */
 	private boolean isFunElement(int character) {
 		if (character == TextSpecial.SPECIAL_GRAVE)
 			return true;
 		return false;
 	}
 
-	/**
-	 * Checks if is in bounds.
-	 * 
-	 * @param y1
-	 *            the y1
-	 * @param x1
-	 *            the x1
-	 * @return true, if is in bounds
-	 */
 	private boolean isInBounds(int y1, int x1) {
 		if (y1 >= 0 && x1 >= 0 && y1 < _grid.getHeight()
 				&& x1 < _grid.getWidth())
@@ -108,13 +60,6 @@ public class Refresher {
 		return false;
 	}
 
-	/**
-	 * Checks if is player.
-	 * 
-	 * @param character
-	 *            the character
-	 * @return true, if is player
-	 */
 	private boolean isPlayer(int character) {
 		if (character == TextSlug.LOOKING_UP
 				|| character == TextSlug.LOOKING_DOWN
@@ -124,17 +69,11 @@ public class Refresher {
 		return false;
 	}
 
-	/**
-	 * Recenter map.
-	 */
 	public void recenterMap() {
 		_upperLeft.setY(_player.getY() - (_term.getHeight() - 2) / 2);
 		_upperLeft.setX(_player.getX() - (_term.getWidth() - 2) / 2);
 	}
 
-	/**
-	 * Refresh.
-	 */
 	public void refresh() {
 		recenterMap();
 		int baseColor = 0x09;
@@ -167,12 +106,5 @@ public class Refresher {
 						EnumSet.noneOf(TerminalStyle.class), walls);
 			}
 		}
-	}
-
-	/**
-	 * Refresh terminal.
-	 */
-	public void refreshTerminal() {
-		_term.refresh();
 	}
 }

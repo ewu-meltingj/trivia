@@ -5,8 +5,6 @@ import model.point.Point;
 import util.maze.Interactive;
 import util.text.TextSlug;
 
-// TODO: Auto-generated Javadoc
-
 public class ActionMoveLeft implements I_ActionHandler {
 
 	private static final Point MOVE_LEFT = new Point(0, -1);

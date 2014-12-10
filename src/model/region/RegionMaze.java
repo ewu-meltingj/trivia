@@ -6,8 +6,6 @@ import java.util.List;
 
 import model.passage.A_Passage;
 
-// TODO: Auto-generated Javadoc
-
 public class RegionMaze extends A_Region {
 
 	private int _roomTotalSquared;

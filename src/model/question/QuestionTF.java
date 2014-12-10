@@ -1,9 +1,5 @@
 package model.question;
 
-// TODO: Auto-generated Javadoc
-
-// TODO replace with team members
-
 public class QuestionTF {
 
 	private String _question;

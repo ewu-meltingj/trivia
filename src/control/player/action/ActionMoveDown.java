@@ -5,8 +5,6 @@ import model.point.Point;
 import util.maze.Interactive;
 import util.text.TextSlug;
 
-// TODO: Auto-generated Javadoc
-
 public class ActionMoveDown implements I_ActionHandler {
 
 	private static final Point MOVE_DOWN = new Point(+1, 0);

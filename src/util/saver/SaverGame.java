@@ -11,12 +11,9 @@ import model.player.Player;
 import model.region.RegionMaze;
 import util.maze.MazeBuilder;
 
-// TODO: Auto-generated Javadoc
-
 public class SaverGame {
 
 	public SaverGame() {
-
 	}
 
 	public void clean() {
